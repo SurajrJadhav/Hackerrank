@@ -1,0 +1,65 @@
+ //bubble sort
+ void sort(int *a,int n)
+ {
+    int swap_done=1;
+    while(swap_done)
+    {
+        swap_done=0;
+        for(int i=0;i<n;i++)
+        {
+            if(a[i] > a[i+1])
+            {
+                int temp=a[i];
+                a[i]=a[i+1];
+                a[i+1]=temp;
+                swap_done=1;
+            }
+        }
+        n--;
+    }
+ }
+ 
+ //this is optional
+ int sub(int a,int b)
+ {
+     int c=a-b;
+     return c<0?-c:c;
+ }
+ 
+ void print(int *a,int n )
+ {
+     for(int i=0;i<n;i++)
+     {
+         printf("%d\t",a[i]);
+     }
+ }
+ 
+int pickingNumbers(int a_count, int* a) {
+    int result=0,max=0;
+    sort(a,a_count);
+    print(a, a_count);
+    int j=0,i=0,k=0;
+    while(i<a_count)
+    {
+        j=i;
+        while(sub(a[i], a[j]) == 0 || sub(a[i], a[j])==1)
+        {
+            //k is used to set index
+            if(a[i] == a[j])
+            {
+                k++;
+            }
+            //printf("sub=%d\n",sub(a[i], a[j]));
+            j++;
+            result++;
+
+        }
+        //printf("result = %d\n",result);
+       // printf("k = %d\n",k);
+        i=k;
+        max=result>max?result:max;
+        result=0;
+    }
+    
+    return max;
+}
